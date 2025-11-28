@@ -7,17 +7,17 @@ class InfoRow extends StatelessWidget {
   final String value;
 
   @override
-  Widget build(BuildContext context) => Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: TextStyle(color: Colors.grey.shade400),
-        ),
-        Text(
-          value,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
+  Widget build(BuildContext context) => Wrap(
+    alignment: WrapAlignment.center,
+    runAlignment: WrapAlignment.center,
+    children: [
+      Text(label, style: TextStyle(color: Colors.grey.shade400)),
+      SizedBox(width: 10),
+      Text(
+        value,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+        overflow: TextOverflow.ellipsis,
+      ),
+    ],
+  );
 }

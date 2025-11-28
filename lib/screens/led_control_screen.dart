@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iot_test/callbacks/iot_callbacks.dart';
-import 'package:iot_test/controllers/ip_controller.dart';
 import 'package:iot_test/cubits/cubit_iot_cubit_handler.dart';
 import 'package:iot_test/cubits/state/iot_mqtt_state_entity.dart';
 import 'package:iot_test/widgets/widgets.dart';
@@ -33,7 +32,6 @@ class _LEDControlContentState extends State<_LEDControlContent> {
   @override
   void dispose() {
     IOTCallbacks.disconnect();
-    IpController.value.dispose();
     super.dispose();
   }
 
@@ -46,14 +44,10 @@ class _LEDControlContentState extends State<_LEDControlContent> {
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.all(20),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    child: ListView(
       children: [
         ConnectionIndicator(),
         const SizedBox(height: 30),
-
-        IpTextField(),
-        const SizedBox(height: 20),
 
         ConnectionButton(),
 
@@ -62,9 +56,7 @@ class _LEDControlContentState extends State<_LEDControlContent> {
             children: [
               const SizedBox(height: 40),
 
-              LedIndicator(
-                ledState: state.ledState,
-              ),
+              LedIndicator(ledState: state.ledState),
 
               const SizedBox(height: 40),
 

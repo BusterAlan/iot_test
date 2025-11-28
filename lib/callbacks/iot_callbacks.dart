@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iot_test/controllers/ip_controller.dart';
+import 'package:iot_test/constants/constants.dart';
 import 'package:iot_test/cubits/cubit_iot_cubit_handler.dart';
 import 'package:logger/logger.dart';
 import 'package:mqtt_client/mqtt_client.dart';
@@ -15,12 +15,11 @@ class IOTCallbacks {
 
   /// Conectar al broker MQTT en Raspberry Pi
   static Future<void> connect(BuildContext context) async {
-    final broker = IpController.value.text.trim();
 
     try {
       // Crear cliente MQTT
       client = MqttServerClient(
-        broker,
+        brokerIp,
         'flutter_app_${DateTime.now().millisecondsSinceEpoch}',
         maxConnectionAttempts: 10,
       );
